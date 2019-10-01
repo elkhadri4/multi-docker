@@ -8,5 +8,5 @@ RUN npm run build
 FROM nginx
 EXPOSE 3000
 COPY ./nginx/default.config /etc/nginx/conf.d/default.conf
-COPY --
+COPY . .
 CMD ["npm","run","start"]
