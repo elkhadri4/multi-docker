@@ -21,3 +21,17 @@ after_success:
   - docker push elkhadri4/multi-nginx
   - docker push elkhadri4/multi-server
   - docker push elkhadri4/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-west-3"
+  app: "multi-container"
+  env: "MultiContainer-env "
+  bucket_name: "elasticbeanstalk-eu-west-3-874977614950"
+  bucket_path: "docker-multi"
+  on:
+    branch: master
+  access_key_id:
+    secure: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY

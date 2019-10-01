@@ -1,0 +1,35 @@
+{
+  "AWSEBDockerVersion": 2,
+  "containerDefinitions": [
+    {
+      "name": "client",
+      "image": "elkhadri4/multi-client",
+      "hostname": "client",
+      "essential": false
+    },
+    {
+      "name": "worker",
+      "image": "elkhadri4/multi-worker",
+      "hostname": "worker",
+      "essential": false
+    },
+    {
+      "name": "server",
+      "image": "elkhadri4/multi-server",
+      "hostname": "api",
+      "essential": false
+    },
+    {
+      "name": "nginx",
+      "image": "elkhadri4/multi-nginx",
+      "essential": true,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 80
+        }
+      ],
+      "links": ["client","server k"]
+    }
+  ]
+}
