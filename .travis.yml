@@ -2,7 +2,14 @@ sudo: required
 services:
   - docker
 
-install: 
+before_install:
+  - docker build -t elkhadri4/react-test -f ./client/Dockerfile.dev ./client
+
+
+script:
+  - docker run -e CI=true elkhadri4/react-test npm test
+
+after_success:
   - docker build -t elkhadri4/multi-client ./client
   - docker build -t elkhadri4/multi-nginx ./nginx
   - docker build -t elkhadri4/multi-server ./server
